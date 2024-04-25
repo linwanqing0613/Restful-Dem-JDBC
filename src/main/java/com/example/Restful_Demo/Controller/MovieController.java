@@ -1,38 +1,37 @@
 package com.example.Restful_Demo.Controller;
 
+import com.example.Restful_Demo.Modul.Movie;
 import com.example.Restful_Demo.Service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Component
+@RestController
 public class MovieController {
 
     @Autowired
     private MovieService movieService;
 
-    @GetMapping("/Movies")
-    public ResponseEntity<String> getMovies(){
-        String movies = movieService.getMovies();
-        return null;
+    @GetMapping("/Movie/{movie_id}")
+    public ResponseEntity<Movie> getMovies(@PathVariable Integer movie_id){
+        Movie movie = movieService.getMovie(movie_id);
+        return movie != null? ResponseEntity.ok(movie): ResponseEntity.notFound().build();
     }
-    @PostMapping("/Movies")
-    public ResponseEntity<String> postMovies(){
-        movieService.postMovies();
-        return null;
+    @PostMapping("/Movie")
+    public ResponseEntity<Movie> postMovies(@RequestBody Movie pre_movie){
+        Movie movie= movieService.postMovies(pre_movie);
+
+        return movie != null? ResponseEntity.ok(movie): ResponseEntity.notFound().build();
     }
-    @PutMapping("/Movies")
-    public ResponseEntity<String> updateMovies(){
-        movieService.updateMovies();
-        return null;
+    @PutMapping("/Movie/{movie_id}")
+    public ResponseEntity<Movie> updateMovies(@PathVariable Integer movie_id,@RequestBody Movie pre_movie){
+        movieService.updateMovies(movie_id, pre_movie);
+        Movie movie= movieService.getMovie(movie_id);
+        return movie != null? ResponseEntity.ok(movie): ResponseEntity.notFound().build();
     }
-    @DeleteMapping("/Movie")
-    public ResponseEntity<String> deleteMovies(){
-        movieService.deleteMovies();
-        return null;
+    @DeleteMapping("/Movie/{movie_id}")
+    public ResponseEntity<Movie> deleteMovies(@PathVariable Integer movie_id){
+        Movie movie= movieService.deleteMovies(movie_id);
+        return movie != null? ResponseEntity.ok(movie): ResponseEntity.notFound().build();
     }
 }
