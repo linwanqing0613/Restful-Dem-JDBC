@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Iterator;
-import java.util.List;
+
 
 @Service
 public class MovieServiceImplements implements MovieService {
@@ -21,8 +21,8 @@ public class MovieServiceImplements implements MovieService {
     public Movie getMovie(Integer movie_id){
         return movieRepository.findById(movie_id).orElse(null);
     }
-    public Iterator<Movie> getMovies(List<Integer> movie_ids){
-        return movieRepository.findAllById(movie_ids).iterator();
+    public Iterator<Movie> getMovies(){
+        return movieRepository.findAll().iterator();
     }
     public Movie postMovies(Movie movie){
         movie.setCreated_date(nowDate);
@@ -30,20 +30,9 @@ public class MovieServiceImplements implements MovieService {
         return movieRepository.save(movie);
     }
     public void updateMovies(Integer movie_id, Movie movie){
-        Movie pre_movie = getMovie(movie_id);
-        if(pre_movie != null) {
-            if(movie.getId() == null)
-                movie.setId(movie_id);
-            if(movie.getTitle() == null)
-                movie.setTitle(pre_movie.getTitle());
-            if(movie.getDirector() == null)
-                movie.setDirector(pre_movie.getDirector());
-            if(movie.getYear() == null)
-                movie.setYear(pre_movie.getYear());
-            movie.setCreated_date(pre_movie.getCreated_date());
-            movie.setLast_modified_date(nowDate);
-            movieRepository.save(movie);
-        }
+        movie.setId(movie_id);
+        movie.setLast_modified_date(nowDate);
+        movieRepository.save(movie);
     }
 
     public Movie deleteMovies(Integer movie_id){
