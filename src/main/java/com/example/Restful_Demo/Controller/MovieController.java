@@ -24,9 +24,10 @@ public class MovieController {
         return movie != null? ResponseEntity.ok(movie): ResponseEntity.notFound().build();
     }
     @PutMapping("/Movie/{movie_id}")
-    public ResponseEntity<Movie> updateMovies(@PathVariable Integer movie_id,@RequestBody Movie pre_movie){
-        movieService.updateMovies(movie_id, pre_movie);
-        Movie movie= movieService.getMovie(movie_id);
+    public ResponseEntity<Movie> updateMovies(@PathVariable Integer movie_id,@RequestBody Movie movie){
+        movie.setId(movie_id);
+        movieService.updateMovies(movie);
+        movie= movieService.getMovie(movie_id);
         return movie != null? ResponseEntity.ok(movie): ResponseEntity.notFound().build();
     }
     @DeleteMapping("/Movie/{movie_id}")

@@ -29,8 +29,7 @@ public class MovieServiceImplements implements MovieService {
         movie.setLast_modified_date(nowDate);
         return movieRepository.save(movie);
     }
-    public void updateMovies(Integer movie_id, Movie movie){
-        movie.setId(movie_id);
+    public void updateMovies(Movie movie){
         movie.setLast_modified_date(nowDate);
         movieRepository.save(movie);
     }

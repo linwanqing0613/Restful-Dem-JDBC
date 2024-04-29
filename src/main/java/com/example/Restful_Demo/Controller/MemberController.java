@@ -5,6 +5,7 @@ import com.example.Restful_Demo.Modul.Member;
 import com.example.Restful_Demo.Service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +22,8 @@ public class MemberController {
         Member after_member = memberService.getUserByName(username);
         return after_member != null? ResponseEntity.ok(after_member): ResponseEntity.notFound().build();
     }
-    @PostMapping("/hello")
-    public ResponseEntity<String> hello() {
-        return ResponseEntity.ok("hello");
+    @GetMapping("/hello")
+    public ResponseEntity<Authentication> hello(Authentication authentication) {
+        return ResponseEntity.ok(authentication);
     }
 }
