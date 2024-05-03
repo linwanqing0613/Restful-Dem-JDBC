@@ -17,8 +17,8 @@ public class Movie {
     private String title;
     @Column(name = "director")
     private String director;
-    @Column(name = "year")
-    private Integer year;
+    @Column(name = "release_year")
+    private Integer release_year;
 
     @Column(name = "created_date")
     private LocalDateTime created_date;
@@ -51,11 +51,11 @@ public class Movie {
     }
 
     public Integer getYear() {
-        return year;
+        return release_year;
     }
 
-    public void setYear(Integer year) {
-        this.year = year;
+    public void setYear(Integer release_year) {
+        this.release_year = release_year;
     }
 
     public LocalDateTime getCreated_date() {

@@ -4,6 +4,7 @@ package com.example.Restful_Demo.Dao;
 import com.example.Restful_Demo.Modul.Member;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 

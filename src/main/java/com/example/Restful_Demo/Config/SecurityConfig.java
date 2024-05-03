@@ -32,9 +32,9 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(request -> request
                                 .requestMatchers("/users/register").permitAll()
-                                .requestMatchers(HttpMethod.GET,"/users/hello").hasRole("GUEST")
-                                .requestMatchers(HttpMethod.GET,"/Movie/**").hasRole("NORMAL_MEMBER")
-                                .requestMatchers("/Movie/**").hasRole("AMIN")
+                                .requestMatchers(HttpMethod.GET,"/users/hello").hasAnyRole("GUEST","NORMAL_MEMBER","ADMIN")
+                                .requestMatchers(HttpMethod.GET,"/Movie/**").hasAnyRole("NORMAL_MEMBER","ADMIN")
+                                .requestMatchers("/Movie/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                         )
                 .build();

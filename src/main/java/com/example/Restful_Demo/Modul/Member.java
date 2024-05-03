@@ -19,7 +19,6 @@ public class Member {
     @Column(name = "email")
     private String email;
     @NonNull
-    @JsonIgnore
     @Column(name = "password")
     private String password;
     @ManyToMany
