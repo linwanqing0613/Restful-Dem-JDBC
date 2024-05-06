@@ -1,11 +1,11 @@
 # Movie - Restful API 
-功能實作: CRUD(Movie), Spring Security, 登入登出(Security內建),
-         帳號權限, 簡易單元測試
+功能實作: CRUD(Movie), Spring Security, 登入登出(Security內建),<br>
+         帳號權限, 簡易單元測試<br>
 
-帳號權限(以下權限須從SQL新增權限):
-GUEST -> 可以使用/users/hello 查看 Authentication
-NORMAL_MEMBER -> 可以使用 /Movie以下的路徑(只有GET)
-ADMIN -> 全部都可以使用
+帳號權限(以下權限須從SQL新增權限):<br>
+GUEST -> 可以使用/users/hello 查看 Authentication<br>
+NORMAL_MEMBER -> 可以使用 /Movie以下的路徑(只有GET)<br>
+ADMIN -> 全部都可以使用<br>
 ## 功能
 
 - [x] 註冊帳號 - PUT - ```http://localhost:8080/users/register```	
